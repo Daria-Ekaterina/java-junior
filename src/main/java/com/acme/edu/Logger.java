@@ -1,112 +1,55 @@
 package com.acme.edu;
 
+import java.lang.reflect.Parameter;
+
 /**
  * Logs messages.
  * @author Oskolkova & Kulakova
  */
 public class Logger {
-    private static final String CONST_PRIMITIVE = "primitive: ";
-    private static final String CONST_CHAR = "char: ";
-    private static final String CONST_STRING = "string: ";
-    private static final String CONST_REFERENCE = "reference: ";
+
     private static final String CONST_ARRAY = "primitives array: ";
     private static final String CONST_MATRIX = "primitives matrix: ";
 
-
-
-    private static int sumInt;
-    private static byte sumByte;
-    private static int sumString;
-    private static String eqString = "";
-
-    private static boolean beforeWasInt;
-    private static boolean beforeWasByte;
-    private static boolean beforeWasString = false;
-
-    public static void flush(){//wtf it must do?//может быть, выведи мне все, что накопилось?
-        if (beforeWasInt) {
-            print2Args(CONST_PRIMITIVE,  String.valueOf(sumInt));
-            sumInt = 0;
-        }
-        if (beforeWasByte) {
-            print2Args(CONST_PRIMITIVE,  String.valueOf(sumByte));
-            sumByte = 0;
-        }
-        if (beforeWasString) {
-            if (sumString == 1) print2Args(CONST_STRING, eqString);
-            else if (sumString > 1)print2Args(CONST_STRING, eqString + " (x" + sumString + ")");
-            eqString = "";
-            sumString = 0;
-        }
-        setAllFalse();
+    public static  void flush(){
+        StateFlush.flush();
     }
-
-    private static void setAllFalse(){
-        beforeWasInt = false;
-        beforeWasByte = false;
-        beforeWasString = false;
-    }
-
-    private static void printArray(int[] array){
-        System.out.print("{");
-        for (int i = 0; i < array.length - 1; i++) {
-            System.out.print(array[i] + ", ");
-        }
-        System.out.println(array[array.length - 1] + "}");
-    }
-
-    private static void print2Args(String s1, String s2){
-        System.out.println(s1 + s2);
+    public static void log(Object message){
+        new Controller(new ObjParam(),message);
     }
 
     public static void log(int message){
-        if (!beforeWasInt) flush();
-        if ((long) message + sumInt >= Integer.MAX_VALUE) flush();
-        sumInt += message;
-        beforeWasInt = true;
+         new Controller(new IntParam(),message);
     }
 
     public static void log(byte message){
-        if (!beforeWasByte) flush();
-        if ((int) message + sumByte >= Byte.MAX_VALUE) flush();
-
-        sumByte += message;
-        beforeWasByte = true;
+         new Controller(new ByteParam(),message);
     }
 
     public static void log(char message){
-        flush();
-        print2Args(CONST_CHAR, String.valueOf(message));
+         new Controller(new CharParam(),message);
     }
 
     public static void log(String message){
-        if (!beforeWasString) flush();
-        if (eqString.equals(message)) {
-                sumString++;
-                beforeWasString = true;
-            } else {
-                flush();
-                eqString = message;
-                sumString++;
-                beforeWasString = true;
-            }
-
-    }
+        new Controller(new StringParam(),message);
+        }
 
     public static void log(boolean message){
-        flush();
-        print2Args(CONST_PRIMITIVE, String.valueOf(message));
-    }
+        new Controller(new BoolParam(),message);
+        }
 
 
     public static void log(int... message){
-        flush();
+
+//        new Controller(new ArrParam(),message);
+
+        StateFlush.flush();
         System.out.print(CONST_ARRAY);
-        printArray(message);
+        StateFlush.printArray(message);
     }
 
     public static void log(int[]... message){
-        flush();
+        StateFlush.flush();
         System.out.print(CONST_MATRIX);
         printMatrix(message);
 
@@ -115,16 +58,12 @@ public class Logger {
     private static void printMatrix(int[][] matrix) {
         System.out.print("{");
         for (int i = 0; i < matrix.length ; i++) {
-            printArray(matrix[i]);
+            StateFlush.printArray(matrix[i]);
         }
         System.out.println("}");
 
     }
 
-    public static void log(Object message){
-        flush();
-        print2Args(CONST_REFERENCE, String.valueOf(message));
-    }
 
 }
 
