@@ -1,6 +1,8 @@
-package com.acme.edu;
+package com.acme.edu.param;
 
-public class StateFlush {
+import com.acme.edu.IFormatter;
+
+public class Flusher {
     protected static final String CONST_ARRAY = "primitives array: ";
     protected static final String CONST_REFERENCE = "reference: ";
     protected static final String CONST_PRIMITIVE = "primitive: ";
@@ -38,7 +40,7 @@ public class StateFlush {
         beforeWasString = false;
     }
 
-    protected static void printArray(int[] array){
+    public static void printArray(int[] array){
         System.out.print("{");
         for (int i = 0; i < array.length - 1; i++) {
             System.out.print(array[i] + ", ");
@@ -46,7 +48,27 @@ public class StateFlush {
         System.out.println(array[array.length - 1] + "}");
     }
 
-    protected static void print2Args(String s1, String s2){
+    public static void print2Args(String s1, String s2){
         System.out.println(s1 + s2);
     }
+
+//    public static class StringParam extends BaseParam {
+//
+//        @Override
+//        void checkType(Object message) {
+//            if (!beforeWasString) flush();
+//            if (eqString.equals(message)) {
+//                sumString++;
+//                beforeWasString = true;
+//            } else {
+//                flush();
+//                eqString = message.toString();
+//                sumString++;
+//                beforeWasString = true;
+//            }
+//
+//
+//        }
+//
+//    }
 }

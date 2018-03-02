@@ -1,8 +1,9 @@
 package com.acme.edu;
 
-public class Controller {
-    Controller(BaseParam param, Object message){
-        param.checkType(message);
+import com.acme.edu.param.BaseParam;
 
+public class Controller {
+     Controller(BaseParam param, Object message){
+        param.setCheckType(message);
     }
 }

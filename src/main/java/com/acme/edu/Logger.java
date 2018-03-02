@@ -1,6 +1,6 @@
 package com.acme.edu;
 
-import java.lang.reflect.Parameter;
+import com.acme.edu.param.*;
 
 /**
  * Logs messages.
@@ -12,7 +12,7 @@ public class Logger {
     private static final String CONST_MATRIX = "primitives matrix: ";
 
     public static  void flush(){
-        StateFlush.flush();
+        Flusher.flush();
     }
     public static void log(Object message){
         new Controller(new ObjParam(),message);
@@ -43,13 +43,13 @@ public class Logger {
 
 //        new Controller(new ArrParam(),message);
 
-        StateFlush.flush();
+        Flusher.flush();
         System.out.print(CONST_ARRAY);
-        StateFlush.printArray(message);
+        Flusher.printArray(message);
     }
 
     public static void log(int[]... message){
-        StateFlush.flush();
+        Flusher.flush();
         System.out.print(CONST_MATRIX);
         printMatrix(message);
 
@@ -58,7 +58,7 @@ public class Logger {
     private static void printMatrix(int[][] matrix) {
         System.out.print("{");
         for (int i = 0; i < matrix.length ; i++) {
-            StateFlush.printArray(matrix[i]);
+            Flusher.printArray(matrix[i]);
         }
         System.out.println("}");
 
