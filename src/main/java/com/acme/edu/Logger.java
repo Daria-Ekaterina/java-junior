@@ -7,63 +7,105 @@ import com.acme.edu.param.*;
  * @author Oskolkova & Kulakova
  */
 public class Logger {
+    /**
+     * Static variable Controller for control all that happens.
+     * @author Oskolkova
+     */
+    private static Controller controller = new Controller();
 
-    private static final String CONST_ARRAY = "primitives array: ";
-    private static final String CONST_MATRIX = "primitives matrix: ";
 
-    public static  void flush(){
-        Flusher.flush();
-    }
-    public static void log(Object message){
-        new Controller(new ObjParam(),message);
+    public static void flush(){
+        controller.flush();
     }
 
     public static void log(int message){
-         new Controller(new IntParam(),message);
+        controller.log(message);
     }
 
     public static void log(byte message){
-         new Controller(new ByteParam(),message);
+        controller.log(message);
     }
 
     public static void log(char message){
-         new Controller(new CharParam(),message);
+        controller.log(message);
     }
 
     public static void log(String message){
-        new Controller(new StringParam(),message);
-        }
+        controller.log(message);
+    }
 
     public static void log(boolean message){
-        new Controller(new BoolParam(),message);
-        }
-
+        controller.log(message);
+    }
 
     public static void log(int... message){
-
-//        new Controller(new ArrParam(),message);
-
-        Flusher.flush();
-        System.out.print(CONST_ARRAY);
-        Flusher.printArray(message);
+        controller.log(message);
     }
 
     public static void log(int[]... message){
-        Flusher.flush();
-        System.out.print(CONST_MATRIX);
-        printMatrix(message);
-
+        controller.log(message);
     }
 
-    private static void printMatrix(int[][] matrix) {
-        System.out.print("{");
-        for (int i = 0; i < matrix.length ; i++) {
-            Flusher.printArray(matrix[i]);
-        }
-        System.out.println("}");
-
+    public static void log(Object message){
+        controller.log(message);
     }
-
+//
+//    private static final String CONST_ARRAY = "primitives array: ";
+//    private static final String CONST_MATRIX = "primitives matrix: ";
+//
+//    public static  void flush(){
+//        Flusher.flush();
+//    }
+//    public static void log(Object message){
+//        new Controller(new ObjParam(),message);
+//    }
+//
+//    public static void log(int message){
+//         new Controller(new IntParam(),message);
+//    }
+//
+//    public static void log(byte message){
+//         new Controller(new ByteParam(),message);
+//    }
+//
+//    public static void log(char message){
+//         new Controller(new CharParam(),message);
+//    }
+//
+//    public static void log(String message){
+//        new Controller(new StringParam(),message);
+//        }
+//
+//    public static void log(boolean message){
+//        new Controller(new BoolParam(),message);
+//        }
+//
+//
+//    public static void log(int... message){
+//
+////        new Controller(new ArrParam(),message);
+//
+//        Flusher.flush();
+//        System.out.print(CONST_ARRAY);
+//        Flusher.printArray(message);
+//    }
+//
+//    public static void log(int[]... message){
+//        Flusher.flush();
+//        System.out.print(CONST_MATRIX);
+//        printMatrix(message);
+//
+//    }
+//
+//    private static void printMatrix(int[][] matrix) {
+//        System.out.print("{");
+//        for (int i = 0; i < matrix.length ; i++) {
+//            Flusher.printArray(matrix[i]);
+//        }
+//        System.out.println("}");
+//
+//    }
+//
 
 }
 
