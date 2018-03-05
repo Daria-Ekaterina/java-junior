@@ -1,131 +1,123 @@
 package com.acme.edu;
 
+import com.acme.edu.messagehandlers.BaseTypeMessage;
+import com.acme.edu.messagehandlers.SaverMessage;
+import com.acme.edu.messagehandlers.printers.Printer;
+import com.acme.edu.typeofmessages.*;
+
 /**
  * Logs messages.
  * @author Oskolkova & Kulakova
  */
 public class Logger {
-    private static final String CONST_PRIMITIVE = "primitive: ";
-    private static final String CONST_CHAR = "char: ";
-    private static final String CONST_STRING = "string: ";
-    private static final String CONST_REFERENCE = "reference: ";
-    private static final String CONST_ARRAY = "primitives array: ";
-    private static final String CONST_MATRIX = "primitives matrix: ";
+    /**
+     * Static variable Controller for control all that happens.
+     * @author Oskolkova
+     */
+    private static Controller controller = new Controller();
+    private static com.acme.edu.messagehandlers.Controller contr = new com.acme.edu.messagehandlers.Controller();
 
-
-
-    private static int sumInt;
-    private static byte sumByte;
-    private static int sumString;
-    private static String eqString = "";
-
-    private static boolean beforeWasInt;
-    private static boolean beforeWasByte;
-    private static boolean beforeWasString = false;
-
-    public static void flush(){//wtf it must do?//может быть, выведи мне все, что накопилось?
-        if (beforeWasInt) {
-            print2Args(CONST_PRIMITIVE,  String.valueOf(sumInt));
-            sumInt = 0;
-        }
-        if (beforeWasByte) {
-            print2Args(CONST_PRIMITIVE,  String.valueOf(sumByte));
-            sumByte = 0;
-        }
-        if (beforeWasString) {
-            if (sumString == 1) print2Args(CONST_STRING, eqString);
-            else if (sumString > 1)print2Args(CONST_STRING, eqString + " (x" + sumString + ")");
-            eqString = "";
-            sumString = 0;
-        }
-        setAllFalse();
-    }
-
-    private static void setAllFalse(){
-        beforeWasInt = false;
-        beforeWasByte = false;
-        beforeWasString = false;
-    }
-
-    private static void printArray(int[] array){
-        System.out.print("{");
-        for (int i = 0; i < array.length - 1; i++) {
-            System.out.print(array[i] + ", ");
-        }
-        System.out.println(array[array.length - 1] + "}");
-    }
-
-    private static void print2Args(String s1, String s2){
-        System.out.println(s1 + s2);
+    public static void flush(){
+       // controller.flush();
+     //   Printer.flush();
     }
 
     public static void log(int message){
-        if (!beforeWasInt) flush();
-        if ((long) message + sumInt >= Integer.MAX_VALUE) flush();
-        sumInt += message;
-        beforeWasInt = true;
+        contr.send(new IntTypeMessage(message));
+       // controller.log(message);
     }
 
     public static void log(byte message){
-        if (!beforeWasByte) flush();
-        if ((int) message + sumByte >= Byte.MAX_VALUE) flush();
-
-        sumByte += message;
-        beforeWasByte = true;
+      //  controller.log(message);
+        contr.send(new ByteTypeMessage(message));
     }
 
     public static void log(char message){
-        flush();
-        print2Args(CONST_CHAR, String.valueOf(message));
+        contr.send(new CharTypeMessage(message));
+      //  controller.log(message);
     }
 
     public static void log(String message){
-        if (!beforeWasString) flush();
-        if (eqString.equals(message)) {
-                sumString++;
-                beforeWasString = true;
-            } else {
-                flush();
-                eqString = message;
-                sumString++;
-                beforeWasString = true;
-            }
-
+        contr.send(new StringTypeMessage(message));
+       // controller.log(message);
     }
 
     public static void log(boolean message){
-        flush();
-        print2Args(CONST_PRIMITIVE, String.valueOf(message));
-
-    }
-
-
-    public static void log(int... message){
-        flush();
-        System.out.print(CONST_ARRAY);
-        printArray(message);
-    }
-
-    public static void log(int[]... message){
-        flush();
-        System.out.print(CONST_MATRIX);
-        printMatrix(message);
-
-    }
-
-    private static void printMatrix(int[][] matrix) {
-        System.out.print("{");
-        for (int i = 0; i < matrix.length ; i++) {
-            printArray(matrix[i]);
-        }
-        System.out.println("}");
-
+        contr.send(new BoolTypeMessage(message));
+      //  controller.log(message);
     }
 
     public static void log(Object message){
-        flush();
-        print2Args(CONST_REFERENCE, String.valueOf(message));
+        //     controller.log(message);
+        contr.send(new ObjTypeMessage(message));
     }
+
+    public static void log(int... message){
+        controller.log(message);
+    }
+
+    public static void log(int[]... message){
+        controller.log(message);
+    }
+
+
+//
+//    private static final String CONST_ARRAY = "primitives array: ";
+//    private static final String CONST_MATRIX = "primitives matrix: ";
+//
+//    public static  void flush(){
+//        Flusher.flush();
+//    }
+//    public static void log(Object message){
+//        new Controller(new ObjTypeMessage(),message);
+//    }
+//
+//    public static void log(int message){
+//         new Controller(new IntTypeMessage(),message);
+//    }
+//
+//    public static void log(byte message){
+//         new Controller(new ByteTypeMessage(),message);
+//    }
+//
+//    public static void log(char message){
+//         new Controller(new CharTypeMessage(),message);
+//    }
+//
+//    public static void log(String message){
+//        new Controller(new StringTypeMessage(),message);
+//        }
+//
+//    public static void log(boolean message){
+//        new Controller(new BoolTypeMessage(),message);
+//        }
+//
+//
+//    public static void log(int... message){
+//
+////        new Controller(new ArrTypeMessage(),message);
+//
+//        Flusher.flush();
+//        System.out.print(CONST_ARRAY);
+//        Flusher.printArray(message);
+//    }
+//
+//    public static void log(int[]... message){
+//        Flusher.flush();
+//        System.out.print(CONST_MATRIX);
+//        printMatrix(message);
+//
+//    }
+//
+//    private static void printMatrix(int[][] matrix) {
+//        System.out.print("{");
+//        for (int i = 0; i < matrix.length ; i++) {
+//            Flusher.printArray(matrix[i]);
+//        }
+//        System.out.println("}");
+//
+//    }
+//
 
 }
 
