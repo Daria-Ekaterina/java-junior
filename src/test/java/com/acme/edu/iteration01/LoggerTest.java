@@ -34,6 +34,9 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.flush();
         //endregion
 
+        System.out.println(Logger.class);
+
+
         //region then
         assertSysoutContains("primitive: ");
         assertSysoutContains("primitive: 1");

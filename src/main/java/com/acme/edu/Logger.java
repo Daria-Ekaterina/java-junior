@@ -96,6 +96,7 @@ public class Logger {
     public static void log(boolean message){
         flush();
         print2Args(CONST_PRIMITIVE, String.valueOf(message));
+
     }
 
 
