@@ -50,7 +50,7 @@ public class Flusher {
         System.out.println(s1 + s2);
     }
 
-//    public static class StringTypeMessage extends BaseTypeMessage {
+//    public static class StringCommand extends BaseTypeMessage {
 //
 //        @Override
 //        void checkType(Object message) {

@@ -1,9 +1,6 @@
 package com.acme.edu;
 
-import com.acme.edu.messagehandlers.BaseTypeMessage;
-import com.acme.edu.messagehandlers.SaverMessage;
-
-import com.acme.edu.typeofmessages.*;
+import com.acme.edu.domain.*;
 
 /**
  * Logs messages.
@@ -14,8 +11,8 @@ public class Logger {
      * Static variable Controller for control all that happens.
      * @author Oskolkova
      */
-    private static Controller controller = new Controller();
-    private static com.acme.edu.messagehandlers.Controller contr = new com.acme.edu.messagehandlers.Controller();
+   // private static Controller controller = new Controller();
+    private static com.acme.edu.service.Controller contr = new com.acme.edu.service.Controller();
 
     public static void flush(){
        // controller.flush();
@@ -23,44 +20,44 @@ public class Logger {
     }
 
     public static void log(int message){
-        IntTypeMessage command = new IntTypeMessage(message);
+        IntCommand command = new IntCommand(message);
         contr.controll(command);
-        //contr.send(new IntTypeMessage(message));
+        //contr.send(new IntCommand(message));
        // controller.log(message);
     }
 
     public static void log(byte message){
       //  controller.log(message);
-        contr.controll(new ByteTypeMessage(message));
+        contr.controll(new ByteCommand(message));
     }
 
     public static void log(char message){
-        contr.controll(new CharTypeMessage(message));
+        contr.controll(new CharCommand(message));
       //  controller.log(message);
     }
 
     public static void log(String message){
-        contr.controll(new StringTypeMessage(message));
+        contr.controll(new StringCommand(message));
       //  controller.log(message);
     }
 
     public static void log(boolean message){
-        contr.controll(new BoolTypeMessage(message));
+        contr.controll(new BoolCommand(message));
       //  controller.log(message);
     }
 
     public static void log(Object message){
         //     controller.log(message);
-        contr.controll(new ObjTypeMessage(message));
+        contr.controll(new ObjCommand(message));
     }
 
-    public static void log(int... message){
-        controller.log(message);
-    }
-
-    public static void log(int[]... message){
-        controller.log(message);
-    }
+//    public static void log(int... message){
+//        controller.log(message);
+//    }
+//
+//    public static void log(int[]... message){
+//        controller.log(message);
+//    }
 
 
 //
@@ -71,23 +68,23 @@ public class Logger {
 //        Flusher.flush();
 //    }
 //    public static void log(Object message){
-//        new Controller(new ObjTypeMessage(),message);
+//        new Controller(new ObjCommand(),message);
 //    }
 //
 //    public static void log(int message){
-//         new Controller(new IntTypeMessage(),message);
+//         new Controller(new IntCommand(),message);
 //    }
 //
 //    public static void log(byte message){
-//         new Controller(new ByteTypeMessage(),message);
+//         new Controller(new ByteCommand(),message);
 //    }
 //
 //    public static void log(char message){
-//         new Controller(new CharTypeMessage(),message);
+//         new Controller(new CharCommand(),message);
 //    }
 //
 //    public static void log(String message){
-//        new Controller(new StringTypeMessage(),message);
+//        new Controller(new StringCommand(),message);
 //        }
 //
 //    public static void log(boolean message){
@@ -97,7 +94,7 @@ public class Logger {
 //
 //    public static void log(int... message){
 //
-////        new Controller(new ArrTypeMessage(),message);
+////        new Controller(new ArrCommand(),message);
 //
 //        Flusher.flush();
 //        System.out.print(CONST_ARRAY);

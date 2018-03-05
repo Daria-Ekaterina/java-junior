@@ -1,30 +1,33 @@
-package com.acme.edu.messagehandlers;
+package com.acme.edu.service;
 import com.acme.edu.Logger;
-import com.acme.edu.messagehandlers.printers.ConsolePrinter;
-import com.acme.edu.messagehandlers.printers.IPrinter;
-import com.acme.edu.typeofmessages.Command;
+import com.acme.edu.service.printers.ConsolePrinter;
+import com.acme.edu.service.printers.IPrinter;
+import com.acme.edu.domain.Command;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class Controller {
     private static List<Command> comandList = new LinkedList<Command>();
+
     private IPrinter printer=new ConsolePrinter();
+
     public void controll(Command command){
-       command.handle(command);
-       if(comandList.isEmpty()){
-           comandList.add(command);
-       }else{
-           if(comandList.get(comandList.size()-1).equals(command)){
-               comandList.add(command);
-           }else{
-               for(Command com:comandList){
-                   printer.print(com.decorate());
-               }
+        if(comandList.isEmpty() || comandList.get(comandList.size()-1).type==command.type){
+            comandList.add(command);
+        }else {
+            flush();
+        }
+    }
 
-           }
-       }
+    private void flush() {
+        for (Command co:comandList) {
+            co.accumulate();
+        }
+        //printer.print(Command.decorate());
 
+        //command.handle(command);
+        comandList.clear();
     }
 
     public static void main(String[] args) {
@@ -102,9 +105,9 @@ public class Controller {
         Logger.flush();
 
 //        Controller controller = new Controller();
-//        controller.send(new IntTypeMessage(1));
-//        controller.send(new IntTypeMessage(2));
-//        controller.send(new IntTypeMessage(3));
+//        controller.send(new IntCommand(1));
+//        controller.send(new IntCommand(2));
+//        controller.send(new IntCommand(3));
 //        Printer.flush();
     }
 

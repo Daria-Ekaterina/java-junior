@@ -1,5 +1,5 @@
-package com.acme.edu.messagehandlers;
-import com.acme.edu.typeofmessages.ArrTypeMessage;
+package com.acme.edu.service;
+
 import java.util.LinkedList;
 import java.util.List;
 /**
@@ -7,21 +7,21 @@ import java.util.List;
  */
 public class SaverMessage  {
    // public  Buffer buf=new Buffer();
-    private List<BaseTypeMessage> listMessage = new LinkedList<>();
-    private int[] listInt;
-
-    public void save(BaseTypeMessage message){
-//        switch (message.getType()){
-//            case INT:
-//                buf.setBeforeWasInt(true);
-//                break;
-//            case STRING:
-//                buf.setBeforeWasString(true);
-//                break;
-//            case BYTE:
-//                buf.setBeforeWasByte(true);
-//                break;
-        }
+//    private List<BaseTypeMessage> listMessage = new LinkedList<>();
+//    private int[] listInt;
+//
+//    public void save(BaseTypeMessage message){
+////        switch (message.getType()){
+////            case INT:
+////                buf.setBeforeWasInt(true);
+////                break;
+////            case STRING:
+////                buf.setBeforeWasString(true);
+////                break;
+////            case BYTE:
+////                buf.setBeforeWasByte(true);
+////                break;
+//        }
 //        if(buf.isBeforeWasInt()){
 //            listMessage.add(message);
 //            buf.setSumInt(message.toInt());
@@ -43,7 +43,7 @@ public class SaverMessage  {
 //        buf.setType(message.getType());
 //    }
 //
-//    public void save(ArrTypeMessage message){
+//    public void save(ArrCommand message){
 //        listInt=message.getArray();
 //    }
 //
@@ -83,7 +83,7 @@ public class SaverMessage  {
 ////            endlist();
 ////        }
 //
-//       // summ((IntTypeMessage) message);
+//       // summ((IntCommand) message);
 //    }
 //
 //    private void endlist() {
@@ -97,15 +97,15 @@ public class SaverMessage  {
 //        switch (message.getType()){
 //            case INT:
 //                beforeWasInt=true;
-//                summInt((IntTypeMessage) message);
+//                summInt((IntCommand) message);
 //                break;
 //            case BYTE:
 //                beforeWasByte=true;
-//                summByte((ByteTypeMessage) message);
+//                summByte((ByteCommand) message);
 //                break;
 //            case STRING:
 //                beforeWasString=true;
-//                summString((StringTypeMessage)message);
+//                summString((StringCommand)message);
 //                break;
 //        }
 //    }
@@ -116,20 +116,20 @@ public class SaverMessage  {
 //        this.beforeWasString = false;
 //    }
 //
-//    public void save(ArrTypeMessage message) {
+//    public void save(ArrCommand message) {
 //        listInt=message.getArray();
 //    }
 //
-//    public void summInt(IntTypeMessage message){
+//    public void summInt(IntCommand message){
 //        sumInt+=message.toInt();
 //
 //    }
 //
-//    public  void  summByte(ByteTypeMessage message){
+//    public  void  summByte(ByteCommand message){
 //        sumByte+=message.toByte();
 //    }
 //
-//    public  void summString(StringTypeMessage message){
+//    public  void summString(StringCommand message){
 //      //  sumString+=message.toString();
 //    }
 //
