@@ -1,6 +1,9 @@
 package com.acme.edu;
 
-import com.acme.edu.param.*;
+import com.acme.edu.messagehandlers.BaseTypeMessage;
+import com.acme.edu.messagehandlers.SaverMessage;
+import com.acme.edu.messagehandlers.printers.Printer;
+import com.acme.edu.typeofmessages.*;
 
 /**
  * Logs messages.
@@ -12,30 +15,41 @@ public class Logger {
      * @author Oskolkova
      */
     private static Controller controller = new Controller();
-
+    private static com.acme.edu.messagehandlers.Controller contr = new com.acme.edu.messagehandlers.Controller();
 
     public static void flush(){
-        controller.flush();
+       // controller.flush();
+     //   Printer.flush();
     }
 
     public static void log(int message){
-        controller.log(message);
+        contr.send(new IntTypeMessage(message));
+       // controller.log(message);
     }
 
     public static void log(byte message){
-        controller.log(message);
+      //  controller.log(message);
+        contr.send(new ByteTypeMessage(message));
     }
 
     public static void log(char message){
-        controller.log(message);
+        contr.send(new CharTypeMessage(message));
+      //  controller.log(message);
     }
 
     public static void log(String message){
-        controller.log(message);
+        contr.send(new StringTypeMessage(message));
+       // controller.log(message);
     }
 
     public static void log(boolean message){
-        controller.log(message);
+        contr.send(new BoolTypeMessage(message));
+      //  controller.log(message);
+    }
+
+    public static void log(Object message){
+        //     controller.log(message);
+        contr.send(new ObjTypeMessage(message));
     }
 
     public static void log(int... message){
@@ -46,9 +60,7 @@ public class Logger {
         controller.log(message);
     }
 
-    public static void log(Object message){
-        controller.log(message);
-    }
+
 //
 //    private static final String CONST_ARRAY = "primitives array: ";
 //    private static final String CONST_MATRIX = "primitives matrix: ";
@@ -57,33 +69,33 @@ public class Logger {
 //        Flusher.flush();
 //    }
 //    public static void log(Object message){
-//        new Controller(new ObjParam(),message);
+//        new Controller(new ObjTypeMessage(),message);
 //    }
 //
 //    public static void log(int message){
-//         new Controller(new IntParam(),message);
+//         new Controller(new IntTypeMessage(),message);
 //    }
 //
 //    public static void log(byte message){
-//         new Controller(new ByteParam(),message);
+//         new Controller(new ByteTypeMessage(),message);
 //    }
 //
 //    public static void log(char message){
-//         new Controller(new CharParam(),message);
+//         new Controller(new CharTypeMessage(),message);
 //    }
 //
 //    public static void log(String message){
-//        new Controller(new StringParam(),message);
+//        new Controller(new StringTypeMessage(),message);
 //        }
 //
 //    public static void log(boolean message){
-//        new Controller(new BoolParam(),message);
+//        new Controller(new BoolTypeMessage(),message);
 //        }
 //
 //
 //    public static void log(int... message){
 //
-////        new Controller(new ArrParam(),message);
+////        new Controller(new ArrTypeMessage(),message);
 //
 //        Flusher.flush();
 //        System.out.print(CONST_ARRAY);

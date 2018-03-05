@@ -1,6 +1,4 @@
-package com.acme.edu.param;
-
-import com.acme.edu.IFormatter;
+package com.acme.edu;
 
 public class Flusher {
     protected static final String CONST_ARRAY = "primitives array: ";
@@ -52,7 +50,7 @@ public class Flusher {
         System.out.println(s1 + s2);
     }
 
-//    public static class StringParam extends BaseParam {
+//    public static class StringTypeMessage extends BaseTypeMessage {
 //
 //        @Override
 //        void checkType(Object message) {
