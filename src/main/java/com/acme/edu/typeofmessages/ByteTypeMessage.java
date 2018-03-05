@@ -1,51 +1,32 @@
 package com.acme.edu.typeofmessages;
 
-import com.acme.edu.messagehandlers.BaseTypeMessage;
-import com.acme.edu.messagehandlers.Type;
+import com.acme.edu.messagehandlers.Accomulator;
+import com.acme.edu.messagehandlers.Decorator;
 
 /**
  * @author Kulakova
  */
-public class ByteTypeMessage extends BaseTypeMessage {
+public class ByteTypeMessage extends Command implements Decorator, Accomulator {
 
     private byte message;
+
     public ByteTypeMessage(byte message){
         this.message=message;
-    }
-
-    public byte getMessage() {
-        return message;
-    }
-
-    public void setMessage(byte message) {
-        this.message = message;
-    }
-    @Override
-    public Type getType(){
-        return Type.BYTE;
     }
 
     public String toStr() {
         return String.valueOf(message);
     }
 
+
     @Override
-    public byte toByte() {
-        return (byte)message;
+    public boolean accumulate() {
+        return false;
     }
-    //    @Override
-//    void printer(Object message) {
-//        System.out.print("primitive: ");
-//        super.printer(message);
-//    }
-//
-//    @Override
-//    void checkType(Object message) {
-//        if (!Flusher.beforeWasByte) Flusher.flush();
-//        if ( (int)(byte)message + Flusher.sumByte >= Byte.MAX_VALUE) Flusher.flush();
-//        Flusher.sumByte += (byte)message;
-//        Flusher.beforeWasByte = true;
-//    }
 
+    @Override
+    public String decorate() {
+        return String.valueOf(message);
 
+    }
 }

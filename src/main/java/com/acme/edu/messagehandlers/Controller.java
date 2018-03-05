@@ -1,20 +1,32 @@
 package com.acme.edu.messagehandlers;
 import com.acme.edu.Logger;
-import com.acme.edu.messagehandlers.printers.Printer;
+import com.acme.edu.messagehandlers.printers.ConsolePrinter;
+import com.acme.edu.messagehandlers.printers.IPrinter;
+import com.acme.edu.typeofmessages.Command;
 
+import java.util.LinkedList;
+import java.util.List;
 
 public class Controller {
-    SaverMessage saver = new SaverMessage();
-    Printer printer = new Printer() ;
-    Buffer buf=new Buffer();
+    private static List<Command> comandList = new LinkedList<Command>();
+    private IPrinter printer=new ConsolePrinter();
+    public void controll(Command command){
+       command.handle(command);
+       if(comandList.isEmpty()){
+           comandList.add(command);
+       }else{
+           if(comandList.get(comandList.size()-1).equals(command)){
+               comandList.add(command);
+           }else{
+               for(Command com:comandList){
+                   printer.print(com.decorate());
+               }
 
-public void send(BaseTypeMessage message){
+           }
+       }
 
-    saver.save(message);
-  //  buf.setType(message.getType());
-    printer.print(saver);
-   // controlType(message);
-}
+    }
+
     public static void main(String[] args) {
         Logger.log(1);
         Logger.flush();

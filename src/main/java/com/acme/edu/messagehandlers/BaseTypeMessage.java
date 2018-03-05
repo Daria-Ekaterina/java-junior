@@ -1,25 +1,24 @@
 package com.acme.edu.messagehandlers;
+
 /**
  * @author Kulakova
  */
-public abstract class BaseTypeMessage {
+public class BaseTypeMessage {
+Decorator decorator;
+Accomulator accom;
 
-    public Type getType(){
-        return Type.OBJECT;
+public void handle(Object message){
+    if(accom.accumulate()){
+        decorator.decorate();
     }
-
-    public String toStr(){
-        return "";
-    }
-
-    public int toInt(){
-        return 0;
-    }
-
-    public byte toByte(){
-        return 0;
-    }
-
-
+}
+//
+//    protected boolean accumulate() {
+//        return false;
+//    }
+//
+//    protected void decorate() {
+//
+//    }
 
 }

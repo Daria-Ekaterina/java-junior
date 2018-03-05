@@ -2,7 +2,7 @@ package com.acme.edu;
 
 import com.acme.edu.messagehandlers.BaseTypeMessage;
 import com.acme.edu.messagehandlers.SaverMessage;
-import com.acme.edu.messagehandlers.printers.Printer;
+
 import com.acme.edu.typeofmessages.*;
 
 /**
@@ -23,33 +23,35 @@ public class Logger {
     }
 
     public static void log(int message){
-        contr.send(new IntTypeMessage(message));
+        IntTypeMessage command = new IntTypeMessage(message);
+        contr.controll(command);
+        //contr.send(new IntTypeMessage(message));
        // controller.log(message);
     }
 
     public static void log(byte message){
       //  controller.log(message);
-        contr.send(new ByteTypeMessage(message));
+        contr.controll(new ByteTypeMessage(message));
     }
 
     public static void log(char message){
-        contr.send(new CharTypeMessage(message));
+        contr.controll(new CharTypeMessage(message));
       //  controller.log(message);
     }
 
     public static void log(String message){
-        contr.send(new StringTypeMessage(message));
-       // controller.log(message);
+        contr.controll(new StringTypeMessage(message));
+      //  controller.log(message);
     }
 
     public static void log(boolean message){
-        contr.send(new BoolTypeMessage(message));
+        contr.controll(new BoolTypeMessage(message));
       //  controller.log(message);
     }
 
     public static void log(Object message){
         //     controller.log(message);
-        contr.send(new ObjTypeMessage(message));
+        contr.controll(new ObjTypeMessage(message));
     }
 
     public static void log(int... message){

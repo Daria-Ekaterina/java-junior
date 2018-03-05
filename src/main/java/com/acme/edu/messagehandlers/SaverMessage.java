@@ -6,51 +6,51 @@ import java.util.List;
  * @author Kulakova
  */
 public class SaverMessage  {
-    public  Buffer buf=new Buffer();
+   // public  Buffer buf=new Buffer();
     private List<BaseTypeMessage> listMessage = new LinkedList<>();
     private int[] listInt;
 
     public void save(BaseTypeMessage message){
-        switch (message.getType()){
-            case INT:
-                buf.setBeforeWasInt(true);
-                break;
-            case STRING:
-                buf.setBeforeWasString(true);
-                break;
-            case BYTE:
-                buf.setBeforeWasByte(true);
-                break;
+//        switch (message.getType()){
+//            case INT:
+//                buf.setBeforeWasInt(true);
+//                break;
+//            case STRING:
+//                buf.setBeforeWasString(true);
+//                break;
+//            case BYTE:
+//                buf.setBeforeWasByte(true);
+//                break;
         }
-        if(buf.isBeforeWasInt()){
-            listMessage.add(message);
-            buf.setSumInt(message.toInt());
-        }
-        if (buf.isBeforeWasByte()){
-            listMessage.add(message);
-            buf.setSumByte(message.toByte());
-        }
-        if (buf.isBeforeWasString()){
-            listMessage.add(message);
-            buf.setSumString(1);
-        }
+//        if(buf.isBeforeWasInt()){
+//            listMessage.add(message);
+//            buf.setSumInt(message.toInt());
+//        }
+//        if (buf.isBeforeWasByte()){
+//            listMessage.add(message);
+//            buf.setSumByte(message.toByte());
+//        }
+//        if (buf.isBeforeWasString()){
+//            listMessage.add(message);
+//            buf.setSumString(1);
+//        }
 
-    }
+ //   }
 
 
 
-    private void saveType(BaseTypeMessage message) {
-        buf.setType(message.getType());
-    }
-
-    public void save(ArrTypeMessage message){
-        listInt=message.getArray();
-    }
-
-    public List<BaseTypeMessage> getListMessage(){
-        return listMessage;
-    }
-
+//    private void saveType(BaseTypeMessage message) {
+//        buf.setType(message.getType());
+//    }
+//
+//    public void save(ArrTypeMessage message){
+//        listInt=message.getArray();
+//    }
+//
+//    public List<BaseTypeMessage> getListMessage(){
+//        return listMessage;
+//    }
+//
 
 
 //    public static boolean superPer=false;

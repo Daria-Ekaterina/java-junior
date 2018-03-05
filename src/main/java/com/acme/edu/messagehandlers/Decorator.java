@@ -1,4 +1,5 @@
 package com.acme.edu.messagehandlers;
 
-public interface IDecorator {
+public interface Decorator {
+    String decorate();
 }

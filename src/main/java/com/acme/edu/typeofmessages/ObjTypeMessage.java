@@ -1,34 +1,25 @@
 package com.acme.edu.typeofmessages;
 
-import com.acme.edu.messagehandlers.BaseTypeMessage;
-import com.acme.edu.messagehandlers.Type;
+import com.acme.edu.messagehandlers.Accomulator;
+import com.acme.edu.messagehandlers.Decorator;
 
 /**
  * @author Kulakova
  */
-public class ObjTypeMessage extends BaseTypeMessage {
+public class ObjTypeMessage extends Command  implements Decorator, Accomulator {
     private Object message;
     public ObjTypeMessage(Object message){
         this.message=message;
     }
 
-    public Object getMessage() {
-        return message;
+
+    @Override
+    public String decorate() {
+        return null;
     }
 
-    public void setMessage(Object message) {
-        this.message = message;
-    }
     @Override
-    public Type getType(){
-        return Type.OBJECT;
+    public boolean accumulate() {
+        return false;
     }
-    public String toStr() {
-        return String.valueOf(message);
-    }
-//    @Override
-//    void checkType(Object message) {
-//        Flusher.flush();
-//
-//    }
 }

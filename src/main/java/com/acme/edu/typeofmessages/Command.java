@@ -1,6 +1,17 @@
 package com.acme.edu.typeofmessages;
 
-public interface ICommand {
-    boolean acumulate();
-    String decorate();
+import com.acme.edu.messagehandlers.Accomulator;
+import com.acme.edu.messagehandlers.Decorator;
+
+public abstract class Command {
+
+    public void handle(Object message){
+        if(accumulate()){
+            decorate();
+        }
+    }
+
+    public abstract String decorate();
+    public abstract boolean accumulate();
+
 }

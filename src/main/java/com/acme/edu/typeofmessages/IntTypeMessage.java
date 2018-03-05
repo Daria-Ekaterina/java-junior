@@ -1,40 +1,29 @@
 package com.acme.edu.typeofmessages;
 
-import com.acme.edu.messagehandlers.BaseTypeMessage;
-import com.acme.edu.messagehandlers.Type;
+import com.acme.edu.messagehandlers.Accomulator;
+import com.acme.edu.messagehandlers.Decorator;
 
 /**
  * @author Kulakova
  */
-public class IntTypeMessage extends BaseTypeMessage {
+public class IntTypeMessage extends Command implements Decorator,Accomulator {
     private int massege;
 
     public IntTypeMessage(int message){
         massege=message;
     }
 
-    public int getMassege() {
-        return massege;
-    }
-
-    private void setMassege(int massege) {
-        this.massege = massege;
-    }
     @Override
-    public Type getType(){
-        return Type.INT;
-    }
-
-
-    @Override
-    public String toStr() {
+    public String decorate() {
         return String.valueOf(massege);
     }
 
     @Override
-    public int toInt() {
-        return massege;
+    public boolean accumulate() {
+
+        return false;
     }
+
 
     //    @Override
 //    void checkType(Object message) {
