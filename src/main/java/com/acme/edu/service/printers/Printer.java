@@ -3,7 +3,7 @@ package com.acme.edu.service.printers;
 
 import com.acme.edu.domain.Command;
 
-public interface IPrinter {
+public interface Printer {
 void print(Command str);
 }
 

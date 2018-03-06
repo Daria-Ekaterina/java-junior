@@ -9,46 +9,35 @@ import com.acme.edu.domain.*;
 public class Logger {
     /**
      * Static variable Controller for control all that happens.
-     * @author Oskolkova
+     * @author
      */
-   // private static Controller controller = new Controller();
-    private static Controller contr = new Controller();
 
+    private static Controller controller = new Controller();
     public static void flush(){
-       // controller.flush();
-     //   Printer.flush();
-    }
 
+    }
     public static void log(int message){
-        IntCommand command = new IntCommand(message);
-        contr.controll(command);
-        //contr.send(new IntCommand(message));
-       // controller.log(message);
+        controller.controll(new IntCommand(message));
     }
 
     public static void log(byte message){
-      //  controller.log(message);
-        contr.controll(new ByteCommand(message));
+        controller.controll(new ByteCommand(message));
     }
 
     public static void log(char message){
-        contr.controll(new CharCommand(message));
-      //  controller.log(message);
+        controller.controll(new CharCommand(message));
     }
 
     public static void log(String message){
-        contr.controll(new StringCommand(message));
-      //  controller.log(message);
+        controller.controll(new StringCommand(message));
     }
 
     public static void log(boolean message){
-        contr.controll(new BoolCommand(message));
-      //  controller.log(message);
+        controller.controll(new BoolCommand(message));
     }
 
     public static void log(Object message){
-        //     controller.log(message);
-        contr.controll(new ObjCommand(message));
+        controller.controll(new ObjCommand(message));
     }
 
 //    public static void log(int... message){

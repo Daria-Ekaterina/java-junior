@@ -1,8 +1,7 @@
 package com.acme.edu;
-import com.acme.edu.Logger;
 import com.acme.edu.service.printers.ConsolePrinter;
-import com.acme.edu.service.printers.IPrinter;
 import com.acme.edu.domain.Command;
+import com.acme.edu.service.printers.Printer;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Controller {
     private static List<Command> comandList = new LinkedList<Command>();
 
-    private IPrinter printer=new ConsolePrinter();
+    private Printer printer=new ConsolePrinter();
 
     public void controll(Command command){
         if(comandList.isEmpty() || comandList.get(comandList.size()-1).type==command.type){

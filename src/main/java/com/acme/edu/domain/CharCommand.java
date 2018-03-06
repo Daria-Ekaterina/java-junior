@@ -11,21 +11,18 @@ public class CharCommand extends Command{
     public CharCommand(char message){
         this.message=message;
     }
-
-
     public String toStr() {
         return String.valueOf(message);
     }
-
-
-
     @Override
     public String decorate() {
         return null;
     }
 
     @Override
-    public Command accumulate() {
-        return this;
+    public Command accumulate(Command command) {
+        return null;
     }
+
+
 }

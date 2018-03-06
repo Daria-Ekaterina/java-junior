@@ -15,17 +15,15 @@ public class ByteCommand extends Command {
         return String.valueOf(message);
     }
 
-
-
     @Override
     public String decorate() {
         return String.valueOf(message);
-
     }
 
     @Override
-    public Command accumulate() {
-        return this;
+    public Command accumulate(Command command) {
+        return null;
     }
+
 
 }

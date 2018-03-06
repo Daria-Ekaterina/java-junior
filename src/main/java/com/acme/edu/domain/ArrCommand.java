@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class ArrCommand extends Command {
     private int[] array;
-
+    private String type;
     ArrCommand(int[] array){
         this.array=array;
     }
@@ -19,9 +19,7 @@ public class ArrCommand extends Command {
     }
 
     @Override
-    public Command accumulate() {
-        return this;
+    public Command accumulate(Command command) {
+        return null;
     }
-
-
 }

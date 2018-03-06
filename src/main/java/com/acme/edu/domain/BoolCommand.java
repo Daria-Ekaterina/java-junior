@@ -25,9 +25,10 @@ public class BoolCommand extends Command {
     }
 
     @Override
-    public Command accumulate() {
-        return this;
+    public Command accumulate(Command command) {
+        return null;
     }
+
 
 
 }

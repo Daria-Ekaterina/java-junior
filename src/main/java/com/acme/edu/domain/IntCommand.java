@@ -1,13 +1,18 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Accomulator;
+
 /**
  * @author Kulakova
  */
 public class IntCommand extends Command {
     private int message;
-  //  public static List<Integer> summ;
+
+    public int getMessage(){
+        return message;
+    }
    public final Type type=Type.INT;
-   public static int sum = 0;
+  // public static int sum = 0;
 
     public IntCommand(int message){
         this.message=message;
@@ -17,11 +22,16 @@ public class IntCommand extends Command {
         return Type.INT + String.valueOf(message);
     }
 
+
+
     @Override
-    public Command accumulate() {
-        sum+=message;
-        return this;
+    public Command accumulate(Command command) {
+        this.message+=((IntCommand)command).getMessage();
+        return new IntCommand(message);
     }
+
+
+
 
 //    public Command accumulate2(){
 //        sum += message;

@@ -1,5 +1,5 @@
 package com.acme.edu.domain;
-
+//TODO Передать ответственность за префикс классам типов.
 public enum Type {
     INT("primitive: "),
     BYTE("primitive: "),
