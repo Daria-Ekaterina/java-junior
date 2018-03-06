@@ -1,9 +1,5 @@
 package com.acme.edu.domain;
 
-import com.acme.edu.service.Type;
-
-import java.util.List;
-
 /**
  * @author Kulakova
  */

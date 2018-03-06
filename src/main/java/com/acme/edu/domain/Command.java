@@ -1,5 +1,4 @@
 package com.acme.edu.domain;
-import com.acme.edu.service.Type;
 
 public abstract class Command {
     public static long sum;

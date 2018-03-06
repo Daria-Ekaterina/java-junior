@@ -1,11 +1,5 @@
 package com.acme.edu.domain;
 
-import com.acme.edu.service.Accomulator;
-import com.acme.edu.service.Decorator;
-import com.acme.edu.service.Type;
-
-import java.util.List;
-
 /**
  * @author Kulakova
  */

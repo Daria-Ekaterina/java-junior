@@ -1,4 +1,4 @@
-package com.acme.edu;
+package old;
 
 public class Flusher {
     protected static final String CONST_ARRAY = "primitives array: ";

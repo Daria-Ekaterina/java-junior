@@ -1,4 +1,4 @@
-package com.acme.edu.messagehandlers;
+package com.acme.edu.domain;
 
 public enum Type {
     INT("primitive: "),

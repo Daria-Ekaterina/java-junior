@@ -1,4 +1,4 @@
-package com.acme.edu;
+package old;
 
 public class LoggingBuffer {
     protected int sumInt;

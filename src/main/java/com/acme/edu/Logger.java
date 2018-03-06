@@ -12,7 +12,7 @@ public class Logger {
      * @author Oskolkova
      */
    // private static Controller controller = new Controller();
-    private static com.acme.edu.service.Controller contr = new com.acme.edu.service.Controller();
+    private static Controller contr = new Controller();
 
     public static void flush(){
        // controller.flush();
