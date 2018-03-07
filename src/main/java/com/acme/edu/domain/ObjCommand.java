@@ -1,15 +1,20 @@
 package com.acme.edu.domain;
-
-import java.util.List;
-
 /**
- * @author Kulakova
+ * @author Oskolkova & Kulakova
  */
 public class ObjCommand extends Command{
     private Object message;
+    private final Type type=Type.OBJECT;
+
     public ObjCommand(Object message){
         this.message=message;
     }
+    @Override
+    public Type getType() {return type;}
+
+    public Object getMessage() {return message;}
+
+    public void setMessage(Object message) {this.message = message;}
 
 
     @Override
@@ -18,9 +23,7 @@ public class ObjCommand extends Command{
     }
 
     @Override
-    public Command accumulate() {
-        return this;
+    public Command accumulate(Command command) {
+        return null;
     }
-
-
 }

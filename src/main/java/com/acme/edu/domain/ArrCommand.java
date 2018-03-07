@@ -7,11 +7,16 @@ import java.util.List;
  */
 public class ArrCommand extends Command {
     private int[] array;
-    private String type;
+    private Type type=Type.ARRAY;
     ArrCommand(int[] array){
         this.array=array;
     }
 
+
+    @Override
+    public Type getType() {
+        return type;
+    }
 
     @Override
     public String decorate() {

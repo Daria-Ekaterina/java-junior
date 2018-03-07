@@ -4,20 +4,24 @@ package com.acme.edu.domain;
  * @author Kulakova
  */
 public class ByteCommand extends Command {
+
     public final Type type=Type.BYTE;
     private byte message;
 
     public ByteCommand(byte message){
         this.message=message;
     }
+    @Override
+    public Type getType() {return type;}
 
-    public String toStr() {
-        return String.valueOf(message);
-    }
+    public byte getMessage() {return message;}
+
+    public void setMessage(byte message) {this.message = message;}
+
 
     @Override
     public String decorate() {
-        return String.valueOf(message);
+        return type.getPrefix()+String.valueOf(message);
     }
 
     @Override

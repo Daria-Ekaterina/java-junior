@@ -1,23 +1,19 @@
 package com.acme.edu.domain;
 
-import java.util.List;
-
 /**
- * @author Kulakova
+ * @author Oskolkova & Kulakova
  */
 public class BoolCommand extends Command {
-
     private boolean message;
-
+    private Type type=Type.BOOLEAN;
     public BoolCommand(boolean message){
         this.message=message;
     }
+    @Override
+    public Type getType() {return type;}
 
-
-    public String toStr() {
-        return String.valueOf(message);
-    }
-
+    public boolean isMessage() {return message;}
+    public void setMessage(boolean message) {this.message = message;}
 
     @Override
     public String decorate() {
