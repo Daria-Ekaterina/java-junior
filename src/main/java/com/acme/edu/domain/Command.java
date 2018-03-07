@@ -8,6 +8,8 @@ public void handle(Command message){
         accumulate(message);
         decorate();
     }
+
+    //public abstract Type getType();
     public abstract Type getType();
     public abstract String decorate();
     public abstract Command accumulate(Command command);

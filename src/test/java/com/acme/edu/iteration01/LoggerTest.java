@@ -108,6 +108,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Logger.log(true);
         Logger.log(false);
+        Logger.flush();
         //endregion
 
         //region then
@@ -121,6 +122,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogReference() throws IOException {
         //region when
         Logger.log(new Object());
+        Logger.flush();
         //endregion
 
         //region then

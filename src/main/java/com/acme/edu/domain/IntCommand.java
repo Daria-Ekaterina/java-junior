@@ -24,7 +24,14 @@ public class IntCommand extends Command {
 
     @Override
     public Command accumulate(Command command) {
-        this.message+=((IntCommand)command).getMessage();
-        return new IntCommand(message);
+        if ((long)this.message + ((IntCommand)command).getMessage() > Integer.MAX_VALUE) {
+            System.out.println(this.decorate());
+            return command;
+        } else {
+            this.message += ((IntCommand) command).getMessage();
+            return new IntCommand(message);
+        }
+
+
     }
 }

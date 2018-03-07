@@ -17,12 +17,14 @@ public class BoolCommand extends Command {
 
     @Override
     public String decorate() {
-        return null;
+        return type.getPrefix()+message;
     }
 
     @Override
     public Command accumulate(Command command) {
-        return null;
+        System.out.println(this.decorate());
+        //  message=((CharCommand)command).getMessage();
+        return command;
     }
 
 

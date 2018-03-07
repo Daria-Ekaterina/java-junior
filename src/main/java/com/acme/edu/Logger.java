@@ -30,6 +30,10 @@ public class Logger {
     public static void log(Object message){
         controller.log(new ObjCommand(message));
     }
+
+    public static void log(int[] message){controller.log(new ArrCommand(message));}
+
+    public static void log(int[][] message){controller.log(new MatrixCommand(message));}
 }
 
 

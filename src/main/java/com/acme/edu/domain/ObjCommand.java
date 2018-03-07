@@ -19,11 +19,12 @@ public class ObjCommand extends Command{
 
     @Override
     public String decorate() {
-        return null;
+        return type.getPrefix()+message.toString();
     }
 
     @Override
     public Command accumulate(Command command) {
-        return null;
+        System.out.println(this.decorate());
+        return command;
     }
 }

@@ -1,14 +1,12 @@
 package com.acme.edu.domain;
 
-import java.util.List;
-
 /**
  * @author Kulakova
  */
-public class ArrCommand extends Command {
-    private int[] array;
-    private Type type=Type.ARRAY;
-   public ArrCommand(int[] array){
+public class MatrixCommand extends Command {
+    private int[][] array;
+    private Type type=Type.MATRIX;
+   public MatrixCommand(int[][] array){
         this.array=array;
     }
 
@@ -22,11 +20,19 @@ public class ArrCommand extends Command {
        StringBuilder strArray=new StringBuilder();
        strArray.append(type.getPrefix());
        strArray.append("{");
-        for (int i=0;i<array.length-1;i++) {
-            strArray.append(array[i]+", ");
+       for (int j = 0; j < array.length; j++){
+           strArray.append("{");
+        for (int i=0;i<array[j].length;i++) {
+            if(i==array[j].length-1){
+                strArray.append(array[j][i]);
+            }else {
+                strArray.append(array[j][i]+", ");
+            }
         }
-        strArray.append(array[array.length-1]);
         strArray.append("}");
+       }
+
+       strArray.append("}");
         return strArray.toString();
     }
 

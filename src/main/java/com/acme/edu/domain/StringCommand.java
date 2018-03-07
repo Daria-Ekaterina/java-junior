@@ -3,7 +3,7 @@ package com.acme.edu.domain;
  * @author Oskolkova & Kulakova
  */
  public class StringCommand extends Command {
-
+    private int sumString = 1;
     public final Type type=Type.STRING;
     private String message;
 
@@ -17,9 +17,26 @@ package com.acme.edu.domain;
 
     @Override
     public String decorate() {
-        return type.getPrefix()+message;
+        if (sumString <=1 ){
+        return type.getPrefix()+message;}
+        else return type.getPrefix() + message + " (x" + sumString + ")";
     }
 
     @Override
-    public Command accumulate(Command command) {return new StringCommand(message);}
+    public boolean equals(Object obj) {
+        return this.message == ((StringCommand)obj).message;
+
+    }
+
+    @Override
+    public Command accumulate(Command command) {
+        if(command.equals(this)){
+            this.sumString++;
+            return this;
+        }else{
+            System.out.println(this.decorate());
+            return command;
+        }
+       // return new StringCommand(this.getMessage());
+    }
 }

@@ -24,7 +24,10 @@ public class CharCommand extends Command{
 
     @Override
     public Command accumulate(Command command) {
-        return new CharCommand(message);
+       // System.out.println(command.decorate());
+            System.out.println(this.decorate());
+          //  message=((CharCommand)command).getMessage();
+            return command;
     }
 
 

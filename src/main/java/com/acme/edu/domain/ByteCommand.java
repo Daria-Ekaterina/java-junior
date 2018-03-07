@@ -26,7 +26,13 @@ public class ByteCommand extends Command {
 
     @Override
     public Command accumulate(Command command) {
-        return null;
+        if ((int)this.message + ((ByteCommand)command).getMessage() > Byte.MAX_VALUE) {
+            System.out.println(this.decorate());
+            return command;
+        } else {
+            this.message += ((ByteCommand) command).getMessage();
+            return new ByteCommand(message);
+        }
     }
 
 
