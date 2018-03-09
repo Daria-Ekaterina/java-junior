@@ -9,7 +9,6 @@ public class LoggingBuffer {
     protected boolean beforeWasByte;
     protected boolean beforeWasString = false;
 
-
     protected void setAllFalse(){
         this.beforeWasInt = false;
         this.beforeWasByte = false;
