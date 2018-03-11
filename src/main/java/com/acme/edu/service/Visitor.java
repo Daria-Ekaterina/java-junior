@@ -14,5 +14,5 @@ public interface Visitor {
     public CharCommand visitChar(CharCommand charCommand);
     public ArrCommand visitArray(ArrCommand arrCommand);
     public MatrixCommand visitMatrix(MatrixCommand matrCommand);
-    public ObjCommand visitObject(ObjCommand objCommand);
+    public Command visitObject(ObjCommand objCommand);
 }
