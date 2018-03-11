@@ -1,6 +1,10 @@
 package com.acme.edu;
 
 
+import com.acme.edu.commands.ByteCommand;
+import com.acme.edu.commands.IntCommand;
+import com.acme.edu.commands.StringCommand;
+
 /**
  * This class controls all that happens while logging
  * @author Oskolkova
@@ -13,15 +17,27 @@ public class Controller {
 
     public void log(Command message){
         if (accumulator.getLastCommand() == null) {
+            if (accumulator.add(message)){
+                return;
+            } else {
+                flush();
+            }
             accumulator.add(message);
-            return;
         }
-        if (message.getClass() == accumulator.getLastCommand().getClass()){
-            accumulator.add(message);
+        if (message.getClass() == accumulator.getLastCommand().getClass() &&
+                (message instanceof ByteCommand || message instanceof IntCommand || message instanceof StringCommand)){
+            if (!accumulator.add(message)){
+                flush();
+                accumulator.add(message);
+            }
+
         }
         else {
             flush();
-            accumulator.add(message);
+            if (!accumulator.add(message)){
+                flush();
+                accumulator.add(message);
+            }
         }
 
     }

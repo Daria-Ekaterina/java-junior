@@ -19,7 +19,9 @@ public class StringCommand implements Command {
 
     @Override
     public String toString() {
-        return message;
+        String s = message;
+        if (sumStr > 1) s = s + " (x" + sumStr + ")";
+        return s;
     }
 
     @Override

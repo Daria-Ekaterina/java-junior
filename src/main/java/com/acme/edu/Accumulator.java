@@ -16,6 +16,7 @@ public class Accumulator {
         sumByte = 0;
         sumStr = 0;
         sumInt = 0;
+        lastCommand = null;
     }
 
     private Command lastCommand;
@@ -24,21 +25,43 @@ public class Accumulator {
         return lastCommand;
     }
 
-    public void add(Command message) {
+    public boolean add(Command message) {
         if (message instanceof IntCommand) {
-            sumInt += ((IntCommand) message).getMessage();
+            if (((IntCommand) message).getMessage() + (long) sumInt > Integer.MAX_VALUE){
+                return false;
+            } else {
+                sumInt += ((IntCommand) message).getMessage();
+            }
         }
+        if (message instanceof ByteCommand) {
+            if (((ByteCommand) message).getMessage() + (int) sumByte > Byte.MAX_VALUE){
+                return false;
+            } else {
+                sumByte += ((ByteCommand) message).getMessage();
+            }
+        }
+
         if (message instanceof StringCommand) {
-            sumStr++;
+            if (lastCommand == null) {sumStr++; lastCommand = message; return true;}
+            if (((StringCommand)message).getMessage().equals(lastCommand.toString())) {
+                sumStr++;
+            } else {
+                return false;
+            }
         }
 
         lastCommand = message;
+        return true;
     }
 
     public Command accumulate() {
         if (lastCommand instanceof IntCommand){
             return new IntCommand(sumInt);
         }
+        if (lastCommand instanceof ByteCommand){
+            return new ByteCommand(sumByte);
+        }
+
         if (lastCommand instanceof StringCommand){
             StringCommand toReturn;
             toReturn = new StringCommand(((StringCommand)lastCommand).getMessage());
