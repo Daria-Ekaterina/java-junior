@@ -1,5 +1,7 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Visitor;
+
 /**
  * @author Oskolkova & Kulakova
  */
@@ -9,6 +11,12 @@ public class BoolCommand extends Command {
     public BoolCommand(boolean message){
         this.message=message;
     }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitBool(this);
+    }
+
     @Override
     public Type getType() {return type;}
 

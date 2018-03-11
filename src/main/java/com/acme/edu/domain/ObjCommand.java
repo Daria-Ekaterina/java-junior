@@ -1,4 +1,7 @@
 package com.acme.edu.domain;
+
+import com.acme.edu.service.Visitor;
+
 /**
  * @author Oskolkova & Kulakova
  */
@@ -9,6 +12,12 @@ public class ObjCommand extends Command{
     public ObjCommand(Object message){
         this.message=message;
     }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitObject(this);
+    }
+
     @Override
     public Type getType() {return type;}
 

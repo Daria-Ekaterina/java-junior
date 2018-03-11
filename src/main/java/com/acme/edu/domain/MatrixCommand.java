@@ -1,5 +1,7 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Visitor;
+
 /**
  * @author Kulakova
  */
@@ -8,6 +10,11 @@ public class MatrixCommand extends Command {
     private Type type=Type.MATRIX;
    public MatrixCommand(int[][] array){
         this.array=array;
+    }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitMatrix(this);
     }
 
     @Override

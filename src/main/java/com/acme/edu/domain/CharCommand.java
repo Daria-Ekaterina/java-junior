@@ -1,5 +1,7 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Visitor;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,12 @@ public class CharCommand extends Command{
     public CharCommand(char message){
         this.message=message;
     }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitChar(this);
+    }
+
     @Override
     public Type getType() {return type;}
 

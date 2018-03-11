@@ -1,4 +1,7 @@
 package com.acme.edu.domain;
+
+import com.acme.edu.service.Visitor;
+
 /**
  * @author Oskolkova & Kulakova
  */
@@ -12,7 +15,13 @@ package com.acme.edu.domain;
     public String getMessage() {return message;}
 
     public void setMessage(String message) {this.message = message;}
-   @Override
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitString(this);
+    }
+
+    @Override
     public Type getType() {return type;}
 
     @Override

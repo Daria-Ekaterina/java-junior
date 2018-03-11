@@ -1,5 +1,7 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Visitor;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,11 @@ public class ArrCommand extends Command {
     private Type type=Type.ARRAY;
    public ArrCommand(int[] array){
         this.array=array;
+    }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitArray(this);
     }
 
     @Override

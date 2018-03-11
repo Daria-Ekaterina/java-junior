@@ -13,18 +13,20 @@ public class Controller {
     private static List<Command> comandList = new LinkedList<Command>();
 
     private Printer printer = new ConsolePrinter();
+    Accomulator accomulatorVisitor=new Accomulator();
 
     private static Command finalCommand;
 
     public void log(Command command) {
-        if (finalCommand == null) {
-            finalCommand = command;
-        }
-        if (comandList.isEmpty() || comandList.get(comandList.size() - 1).getType() == command.getType()) {
-            comandList.add(command);
-        } else {
-            flush();
-        }
+        accomulatorVisitor.export(command);
+//        if (finalCommand == null) {
+//            finalCommand = command;
+//        }
+//        if (comandList.isEmpty() || comandList.get(comandList.size() - 1).getType() == command.getType()) {
+//            comandList.add(command);
+//        } else {
+//            flush();
+//        }
 
     }
 
@@ -32,15 +34,16 @@ public class Controller {
      *
      */
     public void flush() {
-        if (comandList.size() > 1) {
-            for (int i = 1; i < comandList.size(); i++) {
-                finalCommand = finalCommand.accumulate(comandList.get(i));
-            }
-        }
-        if (finalCommand != null) {
-            printer.print(finalCommand.decorate());
-        }
-        finalCommand = null;
-        comandList.clear();
-    }
+        accomulatorVisitor.flush();
+//        if (comandList.size() > 1) {
+//            for (int i = 1; i < comandList.size(); i++) {
+//                finalCommand =  finalCommand.accumulate(comandList.get(i));
+//            }
+//        }
+//        if (finalCommand != null) {
+//            printer.print(finalCommand.decorate());
+//        }
+//        finalCommand = null;
+//        comandList.clear();
+   }
  }

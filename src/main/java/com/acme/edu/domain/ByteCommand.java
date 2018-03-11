@@ -1,5 +1,7 @@
 package com.acme.edu.domain;
 
+import com.acme.edu.service.Visitor;
+
 /**
  * @author Kulakova
  */
@@ -11,6 +13,12 @@ public class ByteCommand extends Command {
     public ByteCommand(byte message){
         this.message=message;
     }
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitByte(this);
+    }
+
     @Override
     public Type getType() {return type;}
 

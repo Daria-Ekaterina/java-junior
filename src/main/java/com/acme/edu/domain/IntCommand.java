@@ -1,6 +1,6 @@
 package com.acme.edu.domain;
 
-import com.acme.edu.service.Accomulator;
+import com.acme.edu.service.Visitor;
 
 /**
  * @author Oskolkova & Kulakova
@@ -10,6 +10,11 @@ public class IntCommand extends Command {
     private final Type type=Type.INT;
 
     public IntCommand(int message){this.message=message;}
+
+    @Override
+    public Command accept(Visitor visitor) {
+        return visitor.visitInt(this);
+    }
 
     @Override
     public Type getType() {return type;}

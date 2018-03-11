@@ -1,4 +1,4 @@
-package com.acme.edu.service;
+package old;
 
 public interface Decorator {
     String decorate();
