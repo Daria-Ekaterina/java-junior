@@ -34,8 +34,9 @@ import com.acme.edu.service.Visitor;
     @Override
     public boolean equals(Object obj) {
         return this.message == ((StringCommand)obj).message;
-
     }
+
+
 
     @Override
     public Command accumulate(Command command) {

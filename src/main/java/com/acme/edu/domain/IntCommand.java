@@ -1,6 +1,6 @@
 package com.acme.edu.domain;
 
-import com.acme.edu.service.Accomulator;
+
 import com.acme.edu.service.Visitor;
 
 /**
