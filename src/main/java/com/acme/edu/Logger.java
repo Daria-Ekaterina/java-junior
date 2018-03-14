@@ -7,6 +7,7 @@ import com.acme.edu.domain.*;
 public class Logger {
     private static Controller controller = new Controller();
     public static void flush(){controller.flush();}
+
     public static void log(int message){
         controller.log(new IntCommand(message));
     }

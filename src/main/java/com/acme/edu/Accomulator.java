@@ -18,6 +18,7 @@ public class Accomulator implements Visitor {
     Printer printer=new ConsolePrinter();
 
     public void export(Command command){
+
         if (finalCommand == null) {
             finalCommand = command;
         }
@@ -43,6 +44,7 @@ public class Accomulator implements Visitor {
 
     @Override
     public IntCommand visitInt(IntCommand intCommand) {
+
         return intCommand;
     }
 

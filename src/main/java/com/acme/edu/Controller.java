@@ -1,4 +1,5 @@
 package com.acme.edu;
+import com.acme.edu.domain.IntCommand;
 import com.acme.edu.service.printers.ConsolePrinter;
 import com.acme.edu.domain.Command;
 import com.acme.edu.service.printers.Printer;
@@ -18,7 +19,9 @@ public class Controller {
     private static Command finalCommand;
 
     public void log(Command command) {
+
         accomulatorVisitor.export(command);
+
 //        if (finalCommand == null) {
 //            finalCommand = command;
 //        }
@@ -27,15 +30,20 @@ public class Controller {
 //        } else {
 //            flush();
 //        }
-
-
     }
 
     /**
      *
      */
+
+    public static void main(String[] args) {
+       // log(5);
+    }
     public void flush() {
         accomulatorVisitor.flush();
+
+
+        //==========================
 //        if (comandList.size() > 1) {
 //            for (int i = 1; i < comandList.size(); i++) {
 //                finalCommand =  finalCommand.accumulate(comandList.get(i));
